@@ -1,31 +1,31 @@
-import React, { useContext } from "react"
+import React, { useContext } from "react";
 
-import styled from "styled-components"
-import { Link } from "gatsby"
-import { GatsbyContext } from "../context/context"
+import styled from "styled-components";
+import { Link } from "gatsby";
+import { GatsbyContext } from "../context/context";
 
 const NavLink = ({ page }) => {
-  const { links } = useContext(GatsbyContext)
+  const { links } = useContext(GatsbyContext);
   return (
     <Wrapper>
-      <button>{page}</button>
+      <button aria-label="Navbar Page">{page}</button>
       <div className="links">
         {links.map((link, index) => {
-          const { url, label, icon } = link
+          const { url, label, icon } = link;
           if (link.page === page) {
             return (
               <Link to={url} key={index}>
                 {icon}
                 {label}
               </Link>
-            )
+            );
           }
         })}
         <div className="caret"></div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.li`
   padding: 1rem 0;
@@ -90,6 +90,6 @@ const Wrapper = styled.li`
     left: 50%;
     transform: translateX(-50%);
   }
-`
+`;
 
-export default NavLink
+export default NavLink;
