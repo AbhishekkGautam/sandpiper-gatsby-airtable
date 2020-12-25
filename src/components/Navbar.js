@@ -1,20 +1,20 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
-import logo from "../images/logo.webp"
-import { GoThreeBars } from "react-icons/go"
-import { Link } from "gatsby"
-import NavLink from "./NavLink"
-import { GatsbyContext } from "../context/context"
+import React, { useContext } from "react";
+import styled from "styled-components";
+import logo from "../images/logo.webp";
+import { GoThreeBars } from "react-icons/go";
+import { Link } from "gatsby";
+import NavLink from "./NavLink";
+import { GatsbyContext } from "../context/context";
 
 const Navbar = () => {
-  const { isSidebarOpen, showSidebar, links } = useContext(GatsbyContext)
+  const { isSidebarOpen, showSidebar, links } = useContext(GatsbyContext);
   const tempLinks = [
     ...new Set(
-      links.map(link => {
-        return link.page
+      links.map((link) => {
+        return link.page;
       })
     ),
-  ]
+  ];
   return (
     <Wrapper>
       <div className="nav-center">
@@ -29,20 +29,24 @@ const Navbar = () => {
             />
           </Link>
           {!isSidebarOpen && (
-            <button className="toggle-btn" onClick={showSidebar}>
+            <button
+              aria-label="Hamburger Menu"
+              className="toggle-btn"
+              onClick={showSidebar}
+            >
               <GoThreeBars />
             </button>
           )}
         </div>
         <ul className="nav-links">
           {tempLinks.map((page, index) => {
-            return <NavLink key={index} page={page}></NavLink>
+            return <NavLink key={index} page={page}></NavLink>;
           })}
         </ul>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.nav`
   position: relative;
@@ -120,6 +124,6 @@ const Wrapper = styled.nav`
       position: relative;
     }
   }
-`
+`;
 
-export default Navbar
+export default Navbar;
