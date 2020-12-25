@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react"
-import Background from "./Background"
-import styled from "styled-components"
-import { Link, useStaticQuery } from "gatsby"
-import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
+import React, { useState, useEffect } from "react";
+import Background from "./Background";
+import styled from "styled-components";
+import { Link, useStaticQuery } from "gatsby";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 const Hero = ({ projects }) => {
-  const images = projects.map(item => {
+  const images = projects.map((item) => {
     const {
       data: {
         image: { localFiles },
       },
-    } = item
-    const image = localFiles[0].childImageSharp.fluid
-    return image
-  })
-  const [index, setIndex] = useState(0)
+    } = item;
+    const image = localFiles[0].childImageSharp.fluid;
+    return image;
+  });
+  const [index, setIndex] = useState(0);
   useEffect(() => {
-    const lastIndex = images.length - 1
+    const lastIndex = images.length - 1;
     if (index < 0) {
-      setIndex(lastIndex)
+      setIndex(lastIndex);
     }
     if (index > lastIndex) {
-      setIndex(0)
+      setIndex(0);
     }
-  }, [index, images])
+  }, [index, images]);
   return (
     <Wrapper>
       <Background image={images[index]}>
@@ -32,17 +32,19 @@ const Hero = ({ projects }) => {
           <Link to="/projects">Projects</Link>
         </article>
         <button
+          aria-label="Left Arrow"
           className="prev-btn"
           onClick={() => {
-            setIndex(index - 1)
+            setIndex(index - 1);
           }}
         >
           <FiChevronLeft />
         </button>
         <button
+          aria-label="Right Arrow"
           className="next-btn"
           onClick={() => {
-            setIndex(index + 1)
+            setIndex(index + 1);
           }}
         >
           <FiChevronRight />
@@ -53,17 +55,17 @@ const Hero = ({ projects }) => {
               <span
                 key={btnIndex}
                 onClick={() => {
-                  setIndex(btnIndex)
+                  setIndex(btnIndex);
                 }}
                 className={index === btnIndex ? "active" : undefined}
               ></span>
-            )
+            );
           })}
         </div>
       </Background>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
   article {
@@ -172,6 +174,6 @@ const Wrapper = styled.section`
       background-color: transparent;
     }
   }
-`
+`;
 
-export default Hero
+export default Hero;
