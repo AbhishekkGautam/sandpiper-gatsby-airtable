@@ -1,53 +1,53 @@
-import React, { useEffect, useState } from "react"
-import Title from "./Title"
-import styled from "styled-components"
-import base from "./Airtable"
-import { FaVoteYea } from "react-icons/fa"
+import React, { useEffect, useState } from "react";
+import Title from "./Title";
+import styled from "styled-components";
+import base from "./Airtable";
+import { FaVoteYea } from "react-icons/fa";
 
 const Survey = () => {
-  const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //GET VOTE
   const getRecords = async () => {
     const records = await base("Survey")
       .select({})
       .firstPage()
-      .catch(err => console.log(err))
-    const newItems = records.map(record => {
-      const { id, fields } = record
-      return { id, fields }
-    })
-    setItems(newItems)
-    setLoading(false)
-  }
+      .catch((err) => console.log(err));
+    const newItems = records.map((record) => {
+      const { id, fields } = record;
+      return { id, fields };
+    });
+    setItems(newItems);
+    setLoading(false);
+  };
 
   //GIVE VOTE
-  const giveVote = async id => {
-    setLoading(true)
-    const tempItems = [...items].map(item => {
+  const giveVote = async (id) => {
+    setLoading(true);
+    const tempItems = [...items].map((item) => {
       if (item.id === id) {
-        let { id, fields } = item
-        fields = { ...fields, votes: fields.votes + 1 }
-        return { id, fields }
+        let { id, fields } = item;
+        fields = { ...fields, votes: fields.votes + 1 };
+        return { id, fields };
       } else {
-        return item
+        return item;
       }
-    })
+    });
     const records = await base("Survey")
       .update(tempItems)
-      .catch(err => console.log(err))
-    const newItems = records.map(record => {
-      const { id, fields } = record
-      return { id, fields }
-    })
-    setItems(newItems)
-    setLoading(false)
-  }
+      .catch((err) => console.log(err));
+    const newItems = records.map((record) => {
+      const { id, fields } = record;
+      return { id, fields };
+    });
+    setItems(newItems);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    getRecords()
-  }, [])
+    getRecords();
+  }, []);
 
   return (
     <Wrapper className="section">
@@ -58,11 +58,11 @@ const Survey = () => {
           <h3>loading...</h3>
         ) : (
           <ul>
-            {items.map(item => {
+            {items.map((item) => {
               const {
                 id,
                 fields: { name, votes },
-              } = item
+              } = item;
               return (
                 <li key={id}>
                   <div className="key">
@@ -72,18 +72,18 @@ const Survey = () => {
                     <h4>{name}</h4>
                     <p>{votes} votes</p>
                   </div>
-                  <button onClick={() => giveVote(id)}>
+                  <button aria-label="Vote icon" onClick={() => giveVote(id)}>
                     <FaVoteYea />
                   </button>
                 </li>
-              )
+              );
             })}
           </ul>
         )}
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
   .container {
@@ -145,5 +145,5 @@ const Wrapper = styled.section`
       }
     }
   }
-`
-export default Survey
+`;
+export default Survey;
