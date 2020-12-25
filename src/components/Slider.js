@@ -78,10 +78,18 @@ const Slider = () => {
             </article>
           );
         })}
-        <button className="prev" onClick={() => setIndex(index - 1)}>
+        <button
+          aria-label="Left Arrow"
+          className="prev"
+          onClick={() => setIndex(index - 1)}
+        >
           <FiChevronLeft />
         </button>
-        <button className="next" onClick={() => setIndex(index + 1)}>
+        <button
+          aria-label="Right Arrow"
+          className="next"
+          onClick={() => setIndex(index + 1)}
+        >
           <FiChevronRight />
         </button>
       </div>
