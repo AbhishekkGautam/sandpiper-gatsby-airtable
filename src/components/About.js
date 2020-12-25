@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import Title from "./Title"
-import services from "../constants/services"
+import React from "react";
+import styled from "styled-components";
+import Title from "./Title";
+import services from "../constants/services";
 const About = () => {
   return (
     <Wrapper className="section">
@@ -11,15 +11,15 @@ const About = () => {
           return (
             <article key={id}>
               <span>{icon}</span>
-              <h4>{label}</h4>
+              <h3>{label}</h3>
               <p>{text}</p>
             </article>
-          )
+          );
         })}
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 const Wrapper = styled.section`
   .section-center {
     margin-top: 4rem;
@@ -50,5 +50,5 @@ const Wrapper = styled.section`
       grid-template-columns: repeat(4, 1fr);
     }
   }
-`
-export default About
+`;
+export default About;
