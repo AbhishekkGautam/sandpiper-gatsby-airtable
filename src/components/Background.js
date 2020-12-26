@@ -4,23 +4,23 @@ import styled, { keyframes } from "styled-components";
 import { useStaticQuery, graphql } from "gatsby";
 
 const Background = ({ children, image }) => {
-  const data = useStaticQuery(graphql`
-    {
-      file(relativePath: { eq: "background.webp" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `);
-  const { fluid } = data.file.childImageSharp;
+  // const data = useStaticQuery(graphql`
+  //   {
+  //     file(relativePath: { eq: "background.webp" }) {
+  //       childImageSharp {
+  //         fluid {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
+  // const { fluid } = data.file.childImageSharp;
   return (
     <Wrapper>
       <BackgroundImage
         Tag="div"
-        fluid={image || fluid}
+        fluid={image}
         className="bcg"
         preserveStackingContext={true}
       >
