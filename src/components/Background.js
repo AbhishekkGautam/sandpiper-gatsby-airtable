@@ -1,12 +1,12 @@
-import React from "react"
-import BackgroundImage from "gatsby-background-image"
-import styled, { keyframes } from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import BackgroundImage from "gatsby-background-image";
+import styled, { keyframes } from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Background = ({ children, image }) => {
   const data = useStaticQuery(graphql`
     {
-      file(relativePath: { eq: "mainBcg.png" }) {
+      file(relativePath: { eq: "mainBcg.webp" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
@@ -14,8 +14,8 @@ const Background = ({ children, image }) => {
         }
       }
     }
-  `)
-  const { fluid } = data.file.childImageSharp
+  `);
+  const { fluid } = data.file.childImageSharp;
   return (
     <Wrapper>
       <BackgroundImage
@@ -27,8 +27,8 @@ const Background = ({ children, image }) => {
         {children}
       </BackgroundImage>
     </Wrapper>
-  )
-}
+  );
+};
 
 const fadeIn = keyframes`
       from{
@@ -37,7 +37,7 @@ const fadeIn = keyframes`
       to{
         background-color:rgba(0,0,0,0.4);
       }
-      `
+      `;
 
 const Wrapper = styled.section`
   .bcg {
@@ -51,5 +51,5 @@ const Wrapper = styled.section`
   .bcg::before {
     opacity: 1;
   }
-`
-export default Background
+`;
+export default Background;
